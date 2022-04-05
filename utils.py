@@ -39,7 +39,7 @@ def search_for_posts(query):
 def get_post_by_pk(pk):
     posts_list = get_posts_all()
     for post in posts_list:
-        if post("pk") == pk:
+        if post["pk"] == pk:
             return post
     return {'not_found': "Ничего нет:("}
 
