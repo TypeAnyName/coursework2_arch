@@ -17,4 +17,13 @@ def post_page(post_id):
     return render_template("post.html", post=post, comments=comments)
 
 
+@app.route('/search')
+def search():
+    search_by = request.args['s']
+    posts = utils.search_for_posts(search_by)
+    return render_template("search.html", search_by=search_by, posts=posts)
+
+
+
+
 app.run(debug=True)
