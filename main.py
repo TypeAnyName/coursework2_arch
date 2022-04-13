@@ -24,6 +24,10 @@ def search():
     return render_template("search.html", search_by=search_by, posts=posts)
 
 
+@app.route("/users/<username>")
+def users_posts(username):
+    posts = utils.posts_by_user(username)
+    return render_template("user-feed.html", posts=posts)
 
 
 app.run(debug=True)
