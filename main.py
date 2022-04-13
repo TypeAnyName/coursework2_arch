@@ -30,4 +30,10 @@ def users_posts(username):
     return render_template("user-feed.html", posts=posts)
 
 
+@app.route("/api/posts")
+def json_list():
+    posts_list = utils.get_posts_all()
+    return render_template("list.html", posts_list=posts_list)
+
+
 app.run(debug=True)
