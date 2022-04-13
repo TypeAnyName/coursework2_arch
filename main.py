@@ -36,4 +36,9 @@ def json_list():
     return render_template("list.html", posts_list=posts_list)
 
 
+@app.route("/api/posts/<int:post_id>")
+def json_dict_by_id(post_id):
+    post_dict = utils.get_post_by_pk(post_id)
+    return render_template("dict.html", post_dict=post_dict)
+
 app.run(debug=True)
