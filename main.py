@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import utils
 
 app = Flask(__name__)
 
+app.config['JSON_AS_ASCII'] = False
 
 @app.route('/')
 def main_page():
@@ -33,12 +34,14 @@ def users_posts(username):
 @app.route("/api/posts")
 def json_list():
     posts_list = utils.get_posts_all()
-    return render_template("list.html", posts_list=posts_list)
+    return jsonify(posts_list)
 
 
 @app.route("/api/posts/<int:post_id>")
 def json_dict_by_id(post_id):
     post_dict = utils.get_post_by_pk(post_id)
-    return render_template("dict.html", post_dict=post_dict)
+    return jsonify(post_dict)
 
-app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run(debug=True)
